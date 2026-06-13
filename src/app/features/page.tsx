@@ -467,7 +467,7 @@ export default function FeaturesPage() {
                       </p>
                     </div>
                     <div className="insight-detail">
-                      <img alt="Insight Image" className="insight-image" loading="lazy" sizes="100vw" src="/assets/images/Group-2147229487-2-p-2000.png" srcSet="/assets/images/Group-2147229487-2-p-500.png 500w, /assets/images/Group-2147229487-2-p-800.png 800w, /assets/images/Group-2147229487-2-p-1080.png 1080w, /assets/images/Group-2147229487-2-p-1600.png 1600w, /assets/images/Group-2147229487-2-p-2000.png 2000w, /assets/images/Group-2147229487-2-p-2000.png 2718w" />
+                      <img alt="Insight Image" className="insight-image" loading="lazy" src="/assets/images/insight-graphic.png" />
                       <div className="insight-text reveal">
                         Trusted by 3K+ companies around the world
                       </div>
