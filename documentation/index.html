@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Virion — Next.js Template Documentation</title>
+<style>
+  :root{
+    --bg:#f3f3fe;--card:#fff;--ink:#1e213a;--muted:#636783;--accent:#594bec;
+    --border:#e1e1e1;--code:#161a34;--codebg:#0e0f2a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 96px}
+  header{margin-bottom:40px}
+  .eyebrow{display:inline-block;background:#fff;border:1px solid var(--border);
+    border-radius:999px;padding:4px 14px;font-size:13px;font-weight:600;color:var(--accent)}
+  h1{font-size:40px;line-height:1.1;margin:16px 0 8px;letter-spacing:-.02em}
+  h2{font-size:24px;margin:48px 0 12px;letter-spacing:-.01em;border-bottom:1px solid var(--border);padding-bottom:8px}
+  h3{font-size:17px;margin:28px 0 6px}
+  p,li{color:var(--muted)}
+  a{color:var(--accent)}
+  code{background:#e2e4f6;color:var(--code);padding:2px 6px;border-radius:6px;font-size:13px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--codebg);color:#e2e4f6;padding:16px 18px;border-radius:12px;overflow:auto;
+    font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.5}
+  pre code{background:none;color:inherit;padding:0}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;margin:16px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);color:var(--muted)}
+  th{color:var(--ink)}
+  .pill{font-size:12px;background:#e2e4f6;color:var(--code);border-radius:999px;padding:2px 10px}
+  footer{margin-top:64px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);padding-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Documentation</span>
+    <h1>Virion — Next.js Template</h1>
+    <p>A fintech / SaaS marketing &amp; commerce template, converted from the static HTML
+    template to <strong>Next.js 16</strong> (App Router) + <strong>React 19</strong> +
+    <strong>TypeScript</strong>. All 41 pages, faithful to the original design.</p>
+    <p>
+      <span class="pill">Next.js 16</span>
+      <span class="pill">React 19</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill">Static export-ready</span>
+    </p>
+  </header>
+
+  <h2>1. What's inside</h2>
+  <p>This is a faithful port: it reuses the template's <strong>original stylesheet</strong>
+  (<code>public/assets/css/styles.css</code> + <code>fonts.css</code>) unchanged and reproduces the
+  original markup and class names inside React components, so every page matches the source design.
+  Interactivity (mobile nav, Pages dropdown, pricing/blog tabs, FAQ accordion, cart, marquees,
+  scroll-reveal, demo forms) is handled by a single client component that ports the template's
+  original <code>main.js</code>.</p>
+
+  <h2>2. Requirements</h2>
+  <ul>
+    <li>Node.js <strong>20 or newer</strong></li>
+    <li>npm (ships with Node)</li>
+  </ul>
+
+  <h2>3. Getting started</h2>
+  <pre><code>npm install        # install dependencies
+npm run dev        # start dev server → http://localhost:3000
+npm run build      # production build (all routes prerender static)
+npm run start      # serve the production build
+npm run typecheck  # TypeScript check</code></pre>
+
+  <h2>4. Project structure</h2>
+  <pre><code>src/
+  app/                 one folder per route; page.tsx generated from source HTML
+    layout.tsx         shared shell: links the stylesheet, Header, Footer, scripts
+    not-found.tsx      404 boundary
+  components/
+    layout/            header.tsx, footer.tsx (original markup)
+    virion-scripts.tsx client interaction layer (ported from main.js)
+scripts/
+  convert-all.mjs      HTML → JSX page generator
+public/
+  assets/css|fonts|images   original template assets (unchanged)
+documentation/
+  index.html           this file</code></pre>
+
+  <h2>5. Pages &amp; routes</h2>
+  <p>Clean App Router paths map from the original HTML filenames:</p>
+  <table>
+    <tr><th>Section</th><th>Route(s)</th></tr>
+    <tr><td>Home</td><td><code>/</code></td></tr>
+    <tr><td>Marketing</td><td><code>/about</code>, <code>/features</code>, <code>/pricing</code>, <code>/contact</code></td></tr>
+    <tr><td>Blog</td><td><code>/blog</code> + <code>/blog/&lt;slug&gt;</code> (13 posts)</td></tr>
+    <tr><td>Integrations</td><td><code>/integration</code> + <code>/integration/&lt;slug&gt;</code> (9)</td></tr>
+    <tr><td>Products</td><td><code>/product/&lt;handle&gt;</code> (2)</td></tr>
+    <tr><td>Commerce</td><td><code>/checkout</code>, <code>/paypal-checkout</code>, <code>/order-confirmation</code></td></tr>
+    <tr><td>Auth &amp; utility</td><td><code>/login</code>, <code>/signup</code>, <code>/style-guide</code>, <code>/license</code>, <code>/changelog</code>, <code>/401</code>, <code>/404</code></td></tr>
+  </table>
+
+  <h2>6. Editing content</h2>
+  <h3>Text &amp; images</h3>
+  <p>Page markup lives in the generated <code>src/app/&lt;route&gt;/page.tsx</code> files — edit text and
+  <code>&lt;img&gt;</code> sources directly. Images, fonts and the stylesheet live under
+  <code>public/assets/</code>.</p>
+  <h3>Theme</h3>
+  <p>Brand colors, fonts and the type scale are CSS custom properties in the
+  <code>:root</code> block of <code>public/assets/css/styles.css</code> — change them once to re-theme
+  the whole site.</p>
+  <h3>Header / footer</h3>
+  <p>Shared across all pages — edit once in <code>src/components/layout/header.tsx</code> and
+  <code>footer.tsx</code>.</p>
+
+  <h2>7. Regenerating pages</h2>
+  <p>The route components are generated from the original HTML by a converter, so a bulk markup
+  change is a re-run rather than 41 hand edits:</p>
+  <pre><code>node scripts/convert-all.mjs</code></pre>
+  <p>It extracts each page's content (between the header and footer, which the layout provides),
+  rewrites links to clean routes, normalises asset paths, and converts HTML attributes to JSX.</p>
+
+  <h2>8. Interactive features</h2>
+  <p>All handled in <code>src/components/virion-scripts.tsx</code> (no jQuery, no Webflow runtime):</p>
+  <ul>
+    <li>Mobile navigation &amp; "Pages" mega-dropdown</li>
+    <li>Pricing Monthly/Yearly and blog category tabs</li>
+    <li>FAQ accordion, testimonial &amp; integration marquees</li>
+    <li>Scroll-reveal entrances (respects <code>prefers-reduced-motion</code>)</li>
+    <li>Cart with <code>localStorage</code> persistence, mini-cart, checkout &amp; order confirmation</li>
+    <li>Contact / login / sign-up demo forms (front-end only — wire to your own endpoint)</li>
+  </ul>
+
+  <h2>9. Deployment</h2>
+  <p>The app prerenders every route to static HTML, so it deploys anywhere that runs Next.js.</p>
+  <h3>Vercel (recommended)</h3>
+  <pre><code>npm i -g vercel
+vercel            # preview deploy
+vercel --prod     # production deploy</code></pre>
+  <p>Or import the GitHub repository at <a href="https://vercel.com/new">vercel.com/new</a> — Vercel
+  auto-detects Next.js, no configuration needed.</p>
+
+  <h2>10. Notes</h2>
+  <ul>
+    <li>The contact, login, sign-up and checkout forms are front-end demos with no backend.
+    Connect the <code>&lt;form&gt;</code> elements to your own service (Formspree, an API, etc.) to go live.</li>
+    <li>Fonts (Inter, Inter Tight, Island Moments) are self-hosted under <code>public/assets/fonts/</code>
+    — no external font requests.</li>
+  </ul>
+
+  <footer>
+    Virion — Next.js template · Built with Next.js 16, React 19 &amp; TypeScript.
+  </footer>
+</div>
+</body>
+</html>

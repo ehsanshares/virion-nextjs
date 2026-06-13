@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+# Binary assets — never touch
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.avif binary
+*.mp4 binary
+*.webm binary
+*.woff binary
+*.woff2 binary
+*.ico binary
