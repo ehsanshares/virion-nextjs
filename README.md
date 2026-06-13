@@ -1,40 +1,26 @@
-# Virion
+# Virion — Next.js 16 Fintech & SaaS Template
 
-Fintech / SaaS template, converted from the static HTML template to **Next.js 16**
-(App Router) + **React 19** + **TypeScript**. All 41 pages.
+A production-ready fintech / SaaS template built on **Next.js 16** (App Router) +
+**React 19** + **TypeScript**. 41 pages, no CMS or backend required.
+
+Full documentation is in `documentation/index.html` (in the download).
 
 ## Approach
 
-This is a faithful port: it reuses the template's **original stylesheet**
-(`public/assets/css/styles.css` + `fonts.css`) unchanged, and reproduces the
-original markup and class names inside React components so the pages match the
-source pixel-for-pixel.
+The template reuses its **original hand-crafted stylesheet**
+(`public/assets/css/styles.css` + `fonts.css`) and reproduces the original markup
+and class names inside React components, so the design is pixel-faithful and there's
+no utility-framework or build-time CSS pipeline to learn.
 
-- **Styling** — the original `styles.css` is linked from the root layout; no
-  styles were rewritten. All assets live under `public/assets/` exactly as the
-  template shipped them, so the CSS's relative `url(...)` references resolve.
-- **Interactivity** — `src/components/virion-scripts.tsx` ports the template's
-  `main.js` (mobile nav, Pages dropdown, pricing/blog tabs, FAQ accordion,
-  localStorage cart, checkout, marquees, scroll-reveal, demo forms) into a single
-  client-side mount effect. It drives the original markup/classes unchanged.
-- **Layout** — `src/app/layout.tsx` provides the shared `<Header>`, `<Footer>`,
-  page decoration and the linked stylesheet; each route renders its own content.
-- **Routing** — clean App Router paths (e.g. `blog-*.html` → `/blog/<slug>`,
-  `integration-*.html` → `/integration/<slug>`, `product-*.html` →
-  `/product/<handle>`, `contact-us` → `/contact`, `sign-up` → `/signup`).
-
-## Regenerating pages
-
-Page components are generated from the source HTML by a converter, so a markup
-change is a re-run, not a hand edit:
-
-```bash
-node scripts/convert-all.mjs   # rewrites every src/app/**/page.tsx from source
-```
-
-The script extracts each page's content (between the header and footer, which the
-layout provides), rewrites links to clean routes, normalises asset paths, and
-converts HTML attributes to their JSX equivalents.
+- **Styling** — the original `styles.css` is linked from the root layout. Brand
+  colors, fonts, type scale and spacing are CSS custom properties in the `:root`
+  block of that file; change them once to re-theme the whole site. All assets live
+  under `public/assets/`.
+- **Interactivity** — `src/components/virion-scripts.tsx` is a single client
+  component handling the mobile nav, Pages dropdown, pricing/blog tabs, FAQ
+  accordion, localStorage cart, checkout, marquees, scroll-reveal and demo forms.
+- **Layout** — `src/app/layout.tsx` provides the shared `<Header>`, `<Footer>` and
+  the linked stylesheet; each route under `src/app/` renders its own content.
 
 ## Getting started
 
@@ -42,19 +28,28 @@ converts HTML attributes to their JSX equivalents.
 npm install
 npm run dev      # http://localhost:3000
 npm run build    # production build (all routes prerender static)
+npm run start    # serve the production build
 npm run typecheck
 ```
+
+## Editing content
+
+- **Page content** — edit text and `<img>` sources directly in
+  `src/app/<route>/page.tsx`.
+- **Theme** — edit the CSS custom properties at the top of
+  `public/assets/css/styles.css`.
+- **Header / footer** — shared, edited once in `src/components/layout/`.
 
 ## Structure
 
 ```
 src/
-  app/                 one folder per route, page.tsx generated from source HTML
+  app/                 one folder per route (page.tsx)
+    layout.tsx         shared shell: stylesheet link, Header, Footer, scripts
+    not-found.tsx      404 boundary
   components/
-    layout/            header, footer (original markup)
-    virion-scripts.tsx client interaction layer (ported from main.js)
-scripts/
-  convert-all.mjs      HTML → JSX page generator
+    layout/            header.tsx, footer.tsx
+    virion-scripts.tsx client interaction layer
 public/
-  assets/css|fonts|images   original template assets, unchanged
+  assets/css|fonts|images   original template assets
 ```
