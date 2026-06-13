@@ -87,6 +87,14 @@ function transform(file) {
   // fallbacks render where AVIF isn't supported.
   body = body.replace(/="assets\//g, '="/assets/');
   body = body.replace(/(\s)assets\//g, "$1/assets/");
+  // The features "Insight" graphic ships only as AVIF at the largest srcset
+  // width, so high-DPR displays select an AVIF that some browsers fail to decode
+  // (leaving the section blank). It's the only .avif in the template — point it
+  // at the equivalent PNG so the graphic renders everywhere.
+  body = body.replace(/Insight-Image\.avif/g, "Group-2147229487-2-p-2000.png");
+  // The insight graphic is the focal point of the section — don't gate it behind
+  // the scroll-reveal fade (which leaves it invisible until the observer fires).
+  body = body.replace(/class="insight-image reveal"/g, 'class="insight-image"');
   for (const [from, to] of Object.entries(attrMap)) {
     body = body.replace(new RegExp(`(\\s)${from}=`, "g"), `$1${to}=`);
   }

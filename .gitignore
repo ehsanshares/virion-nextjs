@@ -27,3 +27,5 @@ yarn-error.log*
 # webflow source (kept locally, not committed)
 _webflow-source/
 *.webflow.zip
+
+.vercel
