@@ -1,0 +1,14 @@
+[
+  {
+    "handle": "for-agency-or-enterprise",
+    "name": "For Agency or enterprise",
+    "yearly": 600,
+    "price": 99
+  },
+  {
+    "handle": "for-individual-or-personal",
+    "name": "For individual or personal",
+    "price": 49,
+    "yearly": 300
+  }
+]

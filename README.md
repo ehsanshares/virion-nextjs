@@ -34,7 +34,12 @@ npm run typecheck
 
 ## Editing content
 
-- **Page content** — edit text and `<img>` sources directly in
+- **Blog & integrations** — MDX collections in `src/content/blog/*.mdx` and
+  `src/content/integrations/*.mdx` (frontmatter + Markdown body). Add a file to
+  publish a new entry; the listing and `[slug]` detail routes pick it up
+  automatically (loader in `src/lib/content.ts`).
+- **Products** — `src/content/products.json` (drives `/product/<handle>` + cart).
+- **Static pages** — edit text and `<img>` sources directly in
   `src/app/<route>/page.tsx`.
 - **Theme** — edit the CSS custom properties at the top of
   `public/assets/css/styles.css`.
